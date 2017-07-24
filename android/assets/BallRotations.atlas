@@ -1,0 +1,55 @@
+
+BallRotations.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+ball
+  rotate: false
+  xy: 1, 1
+  size: 677, 720
+  orig: 677, 720
+  offset: 0, 0
+  index: -1
+ball4
+  rotate: false
+  xy: 1, 1
+  size: 677, 720
+  orig: 677, 720
+  offset: 0, 0
+  index: -1
+
+BallRotations2.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+ball1
+  rotate: false
+  xy: 1, 1
+  size: 720, 677
+  orig: 720, 677
+  offset: 0, 0
+  index: -1
+
+BallRotations3.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+ball2
+  rotate: false
+  xy: 1, 1
+  size: 677, 720
+  orig: 677, 720
+  offset: 0, 0
+  index: -1
+
+BallRotations4.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+ball3
+  rotate: false
+  xy: 1, 1
+  size: 720, 677
+  orig: 720, 677
+  offset: 0, 0
+  index: -1

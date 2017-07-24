@@ -1,3 +1,5 @@
 1. To download Vector images (images with no bg) - Pixabay site will be a good source
 2. To make the animation of image (batching)- libgdx texture can be used.
+    tips : http://www.programmingmoney.com/libgdx-texturepacker-tutorial/
+    Code :  https://code.google.com/archive/p/libgdx-texturepacker-gui/downloads
 3.
