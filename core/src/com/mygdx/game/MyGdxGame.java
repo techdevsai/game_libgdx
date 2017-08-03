@@ -13,8 +13,11 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.sun.org.apache.xpath.internal.operations.Or;
+
+import java.util.ArrayList;
 
 
 public class MyGdxGame extends ApplicationAdapter {
@@ -22,22 +25,29 @@ public class MyGdxGame extends ApplicationAdapter {
 	private TextureAtlas ballrotation;
     private Animation animate_balls;
 	private float time_passed = 0;
-    private ShapeRenderer shapeRenderer;
+    private ArrayList<ShapeRenderer> shapeRenderer;
     private OrthographicCamera camera;
 private Viewport viewport;
+    private DrawWalls drawwalls;
 	//SpriteBatch batch;
 
 	
 	@Override
 	public void create () {
+        int rooms = 9;
 		batch = new SpriteBatch();
 		ballrotation = new TextureAtlas(Gdx.files.internal("BallRotations.atlas"));
         animate_balls = new Animation(1/10f, ballrotation.getRegions());
-        shapeRenderer = new ShapeRenderer();
+        shapeRenderer = new ArrayList<ShapeRenderer>();
+        drawwalls = new DrawWalls();
+        for(int i=0; i<rooms; i++) {
+          //  ShapeRenderer obj1 =
+            shapeRenderer.add(new ShapeRenderer());
+
+
+        }
+
         camera = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-
-
-
        // img = new Texture("BEEBEE.jpg");
 	}
     @Override
@@ -58,6 +68,7 @@ private Viewport viewport;
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		batch.begin();
         time_passed += Gdx.graphics.getDeltaTime();
+
         int x =10;
         int y =10;
       //  batch.draw(img, 0, 0);
@@ -74,31 +85,36 @@ private Viewport viewport;
 
 
         // Lets try to repel ball when it touches wall
-
             batch.end();
-        System.out.println(viewport.getBottomGutterHeight() + "\n left gutter ="+
-                viewport.getLeftGutterWidth() + "\n right gutter ="+
-                viewport.getRightGutterWidth() + "\n screenwidth ="+
-                viewport.getScreenWidth() + "\n screen height ="+
-                viewport.getScreenHeight()+ "\n screenX ="+
-                viewport.getScreenX() + "\n ScreenY ="+
-                viewport.getScreenY() + " =");
+
         if(Gdx.input.isTouched()){
             Gdx.input.getX();
             System.out.println("X= "+Gdx.input.getX()+"Y= "+Gdx.input.getY());
         }
+        int x_point = 100;
+        int y_point = 200;
+for(int i=0; i<8;i++) {
+    //Rect box creation below
 
+    shapeRenderer.get(i).setProjectionMatrix(batch.getProjectionMatrix());
+    shapeRenderer.get(i).setTransformMatrix(batch.getTransformMatrix());
 
-        //Rect box creation below
-        shapeRenderer.setProjectionMatrix(batch.getProjectionMatrix());
-        shapeRenderer.setTransformMatrix(batch.getTransformMatrix());
+    shapeRenderer.get(i).begin(ShapeRenderer.ShapeType.Line);
+    shapeRenderer.get(i).setColor(Color.WHITE);
+  //  shapeRenderer.get(i).line(x_point, 200, x_point, 800);
+    // from here shape renderer should be returned from a method  with new  coordinates (that are not equal to old coordinates)
+    //like --- DrawWalls.generateShaperender(shaperenderer, old_x, old_y) --> return value will be a new line with new coordinates.
+    drawwalls.getShapeRenderer(shapeRenderer.get(i),x_point,y_point);
+    Gdx.gl.glLineWidth(500 / camera.zoom);
 
-        shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
-        shapeRenderer.setColor(Color.WHITE);
-        shapeRenderer.rect(100,200,300,300);
-        Gdx.gl.glLineWidth(500/camera.zoom);
-        shapeRenderer.end();
-	}
+    System.out.println(shapeRenderer.get(i).getProjectionMatrix());
+    shapeRenderer.get(i).end();
+   x_point = x_point+100;
+    y_point= y_point+100;
+  //  x_point= x_point+50;
+}
+
+    }
 
 	
 

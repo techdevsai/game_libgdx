@@ -2,6 +2,7 @@ package com.mygdx.game;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
 /**
@@ -9,21 +10,11 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
  */
 
 public class DrawWalls {
-    /*
-Public vo
-    shapeRenderer = new ShapeRenderer();
-    camera = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+    public ShapeRenderer getShapeRenderer(ShapeRenderer shaprender, int old_xvalue, int old_yvalue) {
 
-    shapeRenderer.setProjectionMatrix(batch.getProjectionMatrix());
-    shapeRenderer.setTransformMatrix(batch.getTransformMatrix());
-    //  float x2 = .getWorldCenter().x;
-    //float y2 = body.getWorldCenter().y;
-    //shapeRend.translate(x2, y2, 0);
+        shaprender.line(old_xvalue,200, old_xvalue, 800);
+      //  Gdx.gl.glLineWidth(500 / camera.zoom);
 
-
-    shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
-    shapeRenderer.setColor(Color.WHITE);
-    shapeRenderer.rect(100, 200, 500, 500);
-    Gdx.gl.glLineWidth(500/camera.zoom);
-    shapeRenderer.end();*/
+        return  shaprender;
+    }
 }
